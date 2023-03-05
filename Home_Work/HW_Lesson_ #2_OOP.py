@@ -1,3 +1,4 @@
+from abc import abstractmethod, ABC
 # OOP
 print('Task # 1')
 # 1. Сreate a class hierarchy of animals with at least 5 animals that have additional methods each, create an instance
@@ -124,6 +125,8 @@ centaur.sleep()
 print()
 print('Task # 2')
 # 2.
+
+
 class Profile:
     """
     Create regular class taking 8 params on init - name, last_name, phone_number, address, email, birthday, age, sex
@@ -139,5 +142,62 @@ class Profile:
         self.age = age
         self.sex = sex
 
-# 3.* Create an interface for the Laptop with the next methods: Screen, Keyboard, Touchpad, WebCam, Ports, Dynamicsand
+    def __str__(self):
+        stringa = f'name={self.name}, last name={self.surname}, phone number={self.phone}, address={self.addres}, ' \
+                  f'email={self.email}, birthday={self.birthday}, age={self.age}, sex={self.sex}'
+        return stringa
+
+
+roman = Profile('Roman', 'Mereniuk', '0989225661', 'Lviv', 'roman@gmail.com', '18.08.1985', 37, 'man')
+print(roman)
+
+print()
+print('Task # 3')
+# 3.* Create an interface for the Laptop with the next methods: Screen, Keyboard, Touchpad, WebCam, Ports, Dynamics and
 #  create an HPLaptop class by using your interface.
+
+
+class Laptop(ABC):
+    @abstractmethod
+    def screen(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def keyboard(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def touchpad(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def web_cam(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def ports(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def dynamics(self):
+        raise NotImplementedError
+
+
+class HPLaptop(Laptop):
+    def screen(self):
+        print('there is screen')
+
+    def keyboard(self):
+        print('there is keyboard')
+
+    def touchpad(self):
+        print('there is touchpad')
+
+    def web_cam(self):
+        print('there is web_cam')
+
+    def ports(self):
+        print('there is ports')
+
+    def dynamics(self):
+        print('there is dynamics')
