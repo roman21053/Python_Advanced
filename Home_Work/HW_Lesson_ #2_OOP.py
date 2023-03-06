@@ -151,8 +151,8 @@ class Profile:
 roman = Profile('Roman', 'Mereniuk', '0989225661', 'Lviv', 'roman@gmail.com', '18.08.1985', 37, 'man')
 print(roman)
 
-print()
-print('Task # 3')
+
+
 # 3.* Create an interface for the Laptop with the next methods: Screen, Keyboard, Touchpad, WebCam, Ports, Dynamics and
 #  create an HPLaptop class by using your interface.
 
@@ -185,19 +185,19 @@ class Laptop(ABC):
 
 class HPLaptop(Laptop):
     def screen(self):
-        print('there is screen')
+        print('there is a screen here')
 
     def keyboard(self):
-        print('there is keyboard')
+        print('there is a keyboard here')
 
     def touchpad(self):
-        print('there is touchpad')
+        print('there is a touchpad here')
 
     def web_cam(self):
-        print('there is web_cam')
+        print('there is a web_cam here')
 
     def ports(self):
-        print('there is ports')
+        print('there is a ports here')
 
     def dynamics(self):
-        print('there is dynamics')
+        print('there is a dynamics here')
