@@ -70,17 +70,16 @@ class Realtor:
     """
     __instance = None
     __realtors_money = 0
+
     def __init__(self, name, houses, discount):
         if Realtor.__instance is None:
             self.__name = name
             self.houses = houses
             self.discount_realtor = discount
-            # self.__realtors_money = 0
             Realtor.__instance = self
         else:
             raise Exception('Object Realtor already exists. Cannot create two object of this class')
 
-    __slots__ = ('__name', 'houses', 'discount_realtor')
     @property
     def name(self):
         return self.__name
