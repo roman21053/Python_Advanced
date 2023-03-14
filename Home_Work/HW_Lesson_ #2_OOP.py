@@ -62,27 +62,27 @@ class Chicken(Animal):
 
 murka = Cat()
 murka.jamp()
-print(f'is murka an instance of the Animal class? : {isinstance(murka, Cat)}')
+print(f'is murka an instance of the Animal class? : {isinstance(murka, Animal)}')
 print()
 
 bars = Dog()
 bars.run()
-print(f'is bars an instance of the Animal class? : {isinstance(bars, Dog)}')
+print(f'is bars an instance of the Animal class? : {isinstance(bars, Animal)}')
 print()
 
 dori = Fish()
 dori.make_sound()
-print(f'is dori an instance of the Animal class? : {isinstance(dori, Fish)}')
+print(f'is dori an instance of the Animal class? : {isinstance(dori, Animal)}')
 print()
 
 godzilla = Monkey()
 godzilla.call()
-print(f'is godzilla an instance of the Animal class? : {isinstance(godzilla, Monkey)}')
+print(f'is godzilla an instance of the Animal class? : {isinstance(godzilla, Animal)}')
 print()
 
 chubaturka = Chicken()
 chubaturka.lays_eggs()
-print(f'is chubaturka an instance of the Animal class? : {isinstance(chubaturka, Chicken)}')
+print(f'is chubaturka an instance of the Animal class? : {isinstance(chubaturka, Animal)}')
 print()
 
 # ...
