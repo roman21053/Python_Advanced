@@ -143,9 +143,7 @@ class Profile:
         self.sex = sex
 
     def __str__(self):
-        stringa = f'name={self.name}, last name={self.surname}, phone number={self.phone}, address={self.addres}, ' \
-                  f'email={self.email}, birthday={self.birthday}, age={self.age}, sex={self.sex}'
-        return stringa
+        return str(list(self.__dict__))
 
 
 roman = Profile('Roman', 'Mereniuk', '0989225661', 'Lviv', 'roman@gmail.com', '18.08.1985', 37, 'man')
