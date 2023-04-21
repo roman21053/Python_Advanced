@@ -1,12 +1,11 @@
 import re
 
 text = input('Enter text: ')
-word = input('Type the word to search and replace in upper case: ')
+word = input('Enter the word to search and replace in upper case: ')
 
-list_word = re.findall(word, text)
-count = len(list_word)
+text_replace, count = re.subn(word, word.upper(),text)
 
-re.sub(word, word.upper(),text)
-print(text)
+print(text_replace)
+print(f'Count of replaced words is {count}')
 
 
