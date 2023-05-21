@@ -6,6 +6,11 @@ from statapi import methods
 app = Flask(__name__)
 
 
+@app.route('/hello/<name>/')
+def hello(name):
+    return f"<h1> Hello, {name}</h1>"
+
+
 @app.route('/stats/')
 @lru_cache(maxsize=1)  # can use cuz no flask proxies refered
 def stats_root():
