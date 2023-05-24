@@ -1,1 +1,4 @@
 cursor
+/mall/main/__pycache__/
+/mall/mall/__pycache__/
+/mall/main/migrations/__pycache__/
