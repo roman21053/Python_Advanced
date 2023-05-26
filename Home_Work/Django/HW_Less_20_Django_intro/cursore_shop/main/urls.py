@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import main, mall
+from .views import main
 
 urlpatterns = [
     path('', main),
-    path('ho', mall),
 ]
