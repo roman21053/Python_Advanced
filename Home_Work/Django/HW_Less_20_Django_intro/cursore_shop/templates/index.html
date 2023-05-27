@@ -1,21 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<!--<div id="carouselExample" class="carousel slide">-->
-<!--  <div class="carousel-inner">-->
-<!--  {% for image in slider_items %}-->
-<!--    <div class="carousel-item active">-->
-<!--      <img src="{{image.image.url}}" class="d-block w-100" alt="{{image.link}}">-->
-<!--    </div>-->
-<!--  {% endfor %}-->
-<!--  </div>-->
-<!--</div>-->
-  <div id="carouselExample" class="carousel slide">
-      {% for img in slider_items %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <a href="{{ img.link }}"><img src="{{ img.image.url }}" class="d-block w-100"></a>
-          </div>
-      {% endfor %}
-  </div>
+<div id="carouselExample" class="carousel slide">
+  {% for image in slider_items %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+           <img src="{{ image.image.url }}" alt="Image not found">
+      </div>
+  {% endfor %}
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
