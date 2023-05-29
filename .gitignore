@@ -1,12 +1,8 @@
-/lib64
-/lib
-/include
-/bin
 /.idea
-/pyvenv.cfg
 /Lessons
 /practice.py
 /Home_Work/for_me.py
 /Makefile
 /Home_Work/Django/venv/
 /Home_Work/Flask/venvFlask
+/venvAdvanced/
