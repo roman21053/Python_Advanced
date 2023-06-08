@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
     {% for image in slider_items %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <img src="{{ image.image.url }}" class="d-block w-100" alt="Image not found" style="object-fit: cover; height: 100vh;">
+        <img src="{{ image.image.url }}" class="d-block w-100" alt="Image not found" style="object-fit: cover; height: 100%;">
       </div>
     {% endfor %}
   </div>
