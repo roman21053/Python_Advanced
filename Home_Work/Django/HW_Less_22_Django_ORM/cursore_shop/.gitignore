@@ -7,3 +7,4 @@
 /docker/db
 /products/__init__.py
 /products/migrations/__init__.py
+/products/__pycache__/
