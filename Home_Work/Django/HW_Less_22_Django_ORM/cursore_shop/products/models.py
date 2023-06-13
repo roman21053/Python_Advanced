@@ -28,3 +28,13 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return str(self.product.id) + " " + self.product.title + "|" + str(self.id)
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.CharField(max_length=255, unique=True, default="slug")
+    parent = models.ForeignKey("Category", null=True, blank=True, on_delete=models.PROTECT)
+    products = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return self.title
