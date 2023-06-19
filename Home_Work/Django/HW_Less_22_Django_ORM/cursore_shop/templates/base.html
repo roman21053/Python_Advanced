@@ -32,7 +32,7 @@
       <ul class="navbar-nav flex-row">
         {% for category in categories %}
             <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a class="nav-link" href="{% url 'category_page' slug=category.slug %}">{{ category.title }}</a>
+              <a class="nav-link btn btn-primary" href="{% url 'category_page' slug=category.slug %}">{{ category.title }}</a>
             </li>
         {% endfor %}
       </ul>
