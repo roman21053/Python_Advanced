@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from datetime import date
 
 
 class Product(models.Model):
@@ -9,7 +10,7 @@ class Product(models.Model):
     discount_price = models.IntegerField(null=True, blank=True)
     show_on_main_page = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-
+    date_of_addition = models.DateField(default=date.today)
     @property
     def main_image(self):
         return ProductImage.objects.filter(Q(product_id=self.id) & Q(is_main=True)).first().image
