@@ -1,0 +1,11 @@
+.env
+/cursore_shop/__pycache__
+/main/__pycache__/
+/main/migrations/__pycache__/
+/main/__init__.py
+/main/migrations/__init__.py
+/docker/db
+/products/__init__.py
+/products/__pycache__/
+/products/migrations/__init__.py
+/products/migrations/__pycache__/

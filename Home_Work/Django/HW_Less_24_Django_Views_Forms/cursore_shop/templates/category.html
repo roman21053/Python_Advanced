@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Sort by
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'category_page' slug=category.slug %}?sort_by=price_low_to_high">Price: Low to High</a></li>
+      <li><a class="dropdown-item" href="{% url 'category_page' slug=category.slug %}?sort_by=price_high_to_low">Price: High to Low</a></li>
+      <li><a class="dropdown-item" href="{% url 'category_page' slug=category.slug %}?sort_by=date_low_to_high">Date: Low to High</a></li>
+      <li><a class="dropdown-item" href="{% url 'category_page' slug=category.slug %}?sort_by=date_high_to_low">Date: High to Low</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <h1 class="text-center">{{ category.title }}</h1>
+    <div class="products-list">
+      {% for product in products %}
+        {% include "elements/card.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
