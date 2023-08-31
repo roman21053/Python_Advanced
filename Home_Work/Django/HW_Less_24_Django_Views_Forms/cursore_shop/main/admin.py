@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MenuItem, SliderItem, Order, OrderItems
+from .models import MenuItem, SliderItem, Order, OrderItems, Discount
 
 # Register your models here.
 
@@ -16,3 +16,4 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Discount)

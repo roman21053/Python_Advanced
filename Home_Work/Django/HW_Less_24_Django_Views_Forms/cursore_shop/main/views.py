@@ -1,17 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import MenuItem, SliderItem, Order, OrderItems
-from products.models import Product, Category
+from django.contrib.auth import login, authenticate, logout
+from .models import SliderItem, Order, OrderItems, Discount
+from products.models import Product
+from .forms import NewUserForm
 
 
 # Create your views here.
 def main(request):
-    menu_items = MenuItem.objects.all()
     slider_items = SliderItem.objects.all()
     products = Product.objects.filter(show_on_main_page=True)
-    categories = Category.objects.filter(parent_id=None)
-    return render(request,'index.html', {"menu_items": menu_items, "slider_items": slider_items, "products": products,
-                                         "categories": categories})
+    return render(request,'index.html', {"slider_items": slider_items, "products": products})
 
 
 def add_to_cart(request, product_id: int):
@@ -35,11 +34,33 @@ def add_to_cart(request, product_id: int):
 
 def cart(request):
     cart_products = []
+    entered_discount = request.GET.get("code_entered")
+
+    if entered_discount:
+        if Discount.objects.filter(discount_cod=entered_discount):
+            cart_discount = Discount.objects.filter(discount_cod=entered_discount).first()
+            if cart_discount.date_of_use is None:
+                cart_discount.activate_discount()    # notes in the database that the code has been used
+                cart_discount.save()
+                request.session["discount_cod"] = entered_discount
+                request.session.modified = True
+            else:
+                message = "This code has already been used"
+                return render(request, "message.html", {"message": message})
+        else:
+            message = "This code is invalid"
+            return render(request, "message.html", {"message": message})
+
     for cart_item in request.session.get("cart", []):
         product = Product.objects.get(id=cart_item["id"])
         product.quantity = cart_item["quantity"]
-        product.total_price = cart_item["price"]
+        if request.session.get("discount_cod"):
+            cart_discount = Discount.objects.filter(discount_cod=request.session["discount_cod"]).first()
+            product.total_price = cart_item["price"] * (1 - (cart_discount.discount_percent * 0.01))
+        else:
+            product.total_price = cart_item["price"]
         cart_products.append(product)
+
     return render(request, "cart.html", {"cart_products": cart_products})
 
 
@@ -49,6 +70,10 @@ def checkout(request):
         total_price = total_price + cart_item["price"]
 
     return render(request, "checkout.html", {"total_price": total_price})
+
+
+def show_message(request):
+    return render(request, "message.html")
 
 
 def checkout_proceed(request):
@@ -75,3 +100,33 @@ def checkout_proceed(request):
             order_item.quantity = item["quantity"]
             order_item.save()
     return HttpResponseRedirect("/")
+
+
+def register(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return HttpResponseRedirect("/")
+    form = NewUserForm()
+    return render(request, "sign-up.html", {"form": form})
+
+
+def sign_in(request):
+    if request.method == "POST":
+        user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
+        if user:
+            login(request, user)
+        return HttpResponseRedirect('/')
+    return render(request, "sign-in.html")
+
+
+def sign_out(request):
+    logout(request)
+    return HttpResponseRedirect("/")
+
+
+def view_session_keys(request):
+    session_keys = {key: request.session[key] for key in request.session.keys()}
+    return render(request, 'session_keys.html', {'session_keys': session_keys})

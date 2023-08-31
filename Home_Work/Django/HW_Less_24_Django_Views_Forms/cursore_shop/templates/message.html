@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="card" style="width: 35rem;">
+        <div class="card-body">
+          <h5 class="card-title fs-1">WRONG code!</h5>
+          <p class="card-text fs-3">{{ message }}</p>
+          <a href="{% url 'cart' %}" class="btn btn-primary btn-lg" role="button">Close</a>
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

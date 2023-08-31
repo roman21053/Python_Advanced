@@ -9,3 +9,4 @@
 /products/__pycache__/
 /products/migrations/__init__.py
 /products/migrations/__pycache__/
+/main/templatetags/__pycache__/

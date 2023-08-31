@@ -1,5 +1,6 @@
 from django.db import models
 from products.models import Product
+from datetime import date, datetime
 
 # Create your models here.
 class MenuItem(models.Model):
@@ -43,3 +44,16 @@ class OrderItems(models.Model):
 
     def __str__(self):
         return str(self.order.id) + " " + self.product.title
+
+
+class Discount(models.Model):
+    discount_cod = models.CharField(max_length=255)
+    discount_percent = models.IntegerField(null=False, blank=False, default=5)
+    date_of_creation = models.DateField(default=date.today)
+    date_of_use = models.DateField(null=True, blank=True)
+
+    def activate_discount(self):   # can be used later
+        self.date_of_use = datetime.now()
+
+    def __str__(self):
+        return self.discount_cod

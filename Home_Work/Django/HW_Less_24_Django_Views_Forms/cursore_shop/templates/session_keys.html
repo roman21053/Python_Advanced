@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Значення для кожного ключа сесії</h1>
+  <ul>
+    {% for key, value in session_keys.items %}
+      <li>{{ key }}: {{ value }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
