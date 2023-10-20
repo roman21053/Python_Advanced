@@ -10,3 +10,6 @@
 /products/migrations/__init__.py
 /products/migrations/__pycache__/
 /main/templatetags/__pycache__/
+/api/__pycache__/
+/api/__init__.py
+/api/migrations/__init__.py

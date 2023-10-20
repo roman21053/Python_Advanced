@@ -37,19 +37,28 @@ def cart(request):
     entered_discount = request.GET.get("code_entered")
 
     if entered_discount:
-        if Discount.objects.filter(discount_cod=entered_discount):
-            cart_discount = Discount.objects.filter(discount_cod=entered_discount).first()
-            if cart_discount.date_of_use is None:
-                cart_discount.activate_discount()    # notes in the database that the code has been used
-                cart_discount.save()
-                request.session["discount_cod"] = entered_discount
+        if entered_discount==("discount_restart"):
+            cart_discount = Discount.objects.all()
+            for elem in cart_discount:
+                elem.date_of_use = None
+                elem.save()
+            if request.session["discount_cod"]:
+                del request.session["discount_cod"]
                 request.session.modified = True
-            else:
-                message = "This code has already been used"
-                return render(request, "message.html", {"message": message})
         else:
-            message = "This code is invalid"
-            return render(request, "message.html", {"message": message})
+            if Discount.objects.filter(discount_cod=entered_discount):
+                cart_discount = Discount.objects.filter(discount_cod=entered_discount).first()
+                if cart_discount.date_of_use is None:
+                    cart_discount.activate_discount()    # notes in the database that the code has been used
+                    cart_discount.save()
+                    request.session["discount_cod"] = entered_discount
+                    request.session.modified = True
+                else:
+                    message = "This code has already been used"
+                    return render(request, "message.html", {"message": message})
+            else:
+                message = "This code is invalid"
+                return render(request, "message.html", {"message": message})
 
     for cart_item in request.session.get("cart", []):
         product = Product.objects.get(id=cart_item["id"])
