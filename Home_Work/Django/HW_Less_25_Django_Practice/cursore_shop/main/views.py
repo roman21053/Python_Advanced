@@ -42,7 +42,7 @@ def cart(request):
             for elem in cart_discount:
                 elem.date_of_use = None
                 elem.save()
-            if request.session["discount_cod"]:
+            if ("discount_cod") in request.session:
                 del request.session["discount_cod"]
                 request.session.modified = True
         else:
